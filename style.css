@@ -1,0 +1,477 @@
+
+/* ===================================
+   URBAN FRAGMENTS
+   Dark Minimal Cinematic Portfolio
+=================================== */
+
+/* 基礎設定 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #111214;
+  color: #f2f0ea;
+  font-family: Arial, "Microsoft JhengHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ===================================
+   導覽列
+=================================== */
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+
+  padding: 36px 7%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+nav {
+  display: flex;
+  gap: 35px;
+}
+
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+/* ===================================
+   首頁封面
+=================================== */
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 140px 10% 100px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.76) 0%,
+      rgba(0, 0, 0, 0.38) 55%,
+      rgba(0, 0, 0, 0.12) 100%
+    ),
+    url("images/cover.jpg") center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.eyebrow {
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 4px;
+  line-height: 1.8;
+}
+
+.hero .eyebrow {
+  color: #ddd;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 9vw, 120px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -3px;
+
+  margin: 30px 0;
+}
+
+.hero-description {
+  color: #ddd;
+  font-size: 15px;
+  letter-spacing: 2px;
+  line-height: 2;
+}
+
+.explore {
+  display: inline-block;
+
+  margin-top: 55px;
+  padding-bottom: 12px;
+
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 3px;
+
+  border-bottom: 1px solid #aaa;
+  transition: border-color 0.3s;
+}
+
+.explore:hover {
+  border-color: white;
+}
+
+/* ===================================
+   Portfolio 整體區域
+=================================== */
+
+.portfolio {
+  padding: 130px 8% 160px;
+}
+
+.portfolio-heading {
+  margin-bottom: 90px;
+}
+
+.portfolio-heading h2 {
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  line-height: 1.2;
+
+  margin: 20px 0 25px;
+}
+
+.portfolio-heading > p:last-child {
+  color: #aaa;
+  font-size: 15px;
+  line-height: 2;
+}
+
+/* ===================================
+   不對稱攝影誌相簿
+=================================== */
+
+.editorial-gallery {
+  display: grid;
+
+  grid-template-columns:
+    repeat(12, minmax(0, 1fr));
+
+  column-gap: 20px;
+  row-gap: 115px;
+
+  align-items: start;
+}
+
+.editorial-photo {
+  margin: 0;
+  min-width: 0;
+}
+
+.editorial-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.editorial-photo img:hover {
+  opacity: 0.88;
+  transform: scale(1.008);
+}
+
+.editorial-photo figcaption {
+  margin-top: 18px;
+  color: #888;
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+
+/* 第一張：大幅置中 */
+.photo-featured {
+  grid-column: 2 / 12;
+}
+
+/* 第二張：偏左 */
+.photo-left {
+  grid-column: 1 / 8;
+}
+
+/* 第三張：偏右、小尺寸 */
+.photo-right {
+  grid-column: 9 / 13;
+  margin-top: 140px;
+}
+
+/* 第四張：大幅偏右 */
+.photo-wide {
+  grid-column: 4 / 13;
+}
+
+/* ===================================
+   About
+=================================== */
+
+.about {
+  padding: 120px 10% 160px;
+  border-top: 1px solid #292929;
+}
+
+.about h2 {
+  font-size: clamp(40px, 5vw, 65px);
+  font-weight: 400;
+}
+
+.about > p:last-child {
+  max-width: 550px;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 2.5;
+}
+
+/* ===================================
+   頁尾
+=================================== */
+
+footer {
+  border-top: 1px solid #292929;
+  padding: 40px 8%;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* ===================================
+   平板
+=================================== */
+
+@media (max-width: 900px) {
+  .editorial-gallery {
+    row-gap: 80px;
+  }
+
+  .photo-right {
+    margin-top: 80px;
+  }
+}
+
+/* ===================================
+   手機版
+=================================== */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 24px;
+    padding: 26px 5%;
+  }
+
+  nav {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 170px 7% 80px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 11vw, 70px);
+    letter-spacing: -1px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .portfolio {
+    padding: 90px 6%;
+  }
+
+  .portfolio-heading {
+    margin-bottom: 55px;
+  }
+
+  .editorial-gallery {
+    grid-template-columns:
+      repeat(6, minmax(0, 1fr));
+
+    column-gap: 12px;
+    row-gap: 60px;
+  }
+
+  .photo-featured {
+    grid-column: 1 / 7;
+  }
+
+  .photo-left {
+    grid-column: 1 / 6;
+  }
+
+  .photo-right {
+    grid-column: 3 / 7;
+    margin-top: 0;
+  }
+
+  .photo-wide {
+    grid-column: 1 / 7;
+  }
+
+  .about {
+    padding: 90px 7%;
+  }
+
+  footer {
+    flex-direction: column;
+    line-height: 2;
+  }
+}
+
+/* 無障礙：減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .editorial-photo img,
+  nav a,
+  .explore {
+    transition: none;
+  }
+}
+
+/* 照片燈箱 */
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 8, 10, 0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 65px 75px;
+}
+
+.lightbox-content {
+  max-width: 1100px;
+  width: 100%;
+  text-align: center;
+}
+
+.lightbox-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  max-height: 75dvh;
+  width: auto;
+  height: auto;
+  margin: auto;
+  object-fit: contain;
+}
+
+.lightbox-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 22px;
+}
+
+.lightbox button {
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 42px;
+}
+
+.lightbox-close {
+  top: 18px;
+  right: 35px;
+}
+
+.lightbox-prev {
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+
+.editorial-photo img {
+  cursor: zoom-in;
+}
+
+@media (max-width: 700px) {
+  .lightbox {
+    padding: 70px 45px;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
+
+  .lightbox-close {
+    right: 20px;
+  }
+
+  .lightbox-info {
+    font-size: 9px;
+  }
+}
