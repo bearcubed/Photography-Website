@@ -72,9 +72,9 @@
 
       <div class="editorial-gallery">
 
-        <!-- 第一張：大幅展示 -->
+        <!-- 第一張 -->
         <figure class="editorial-photo photo-featured">
-          <img src="images/photo1.jpg"
+          <img src="photo1.jpg"
                alt="城市角落攝影作品1"
                loading="lazy">
 
@@ -83,9 +83,9 @@
           </figcaption>
         </figure>
 
-        <!-- 第二張：偏左 -->
+        <!-- 第二張 -->
         <figure class="editorial-photo photo-left">
-          <img src="images/photo2.jpg"
+          <img src="photo2.jpg"
                alt="城市角落攝影作品2"
                loading="lazy">
 
@@ -94,9 +94,9 @@
           </figcaption>
         </figure>
 
-        <!-- 第三張：偏右 -->
+        <!-- 第三張 -->
         <figure class="editorial-photo photo-right">
-          <img src="images/photo3.jpg"
+          <img src="photo3.jpg"
                alt="城市角落攝影作品3"
                loading="lazy">
 
@@ -105,9 +105,9 @@
           </figcaption>
         </figure>
 
-        <!-- 第四張：偏右大圖 -->
+        <!-- 第四張 -->
         <figure class="editorial-photo photo-wide">
-          <img src="images/photo4.jpg"
+          <img src="photo4.jpg"
                alt="城市角落攝影作品4"
                loading="lazy">
 
@@ -128,7 +128,7 @@
       <h2>About Me</h2>
 
       <p>
-        用攝影記錄城市的日常。
+        我喜歡用攝影記錄城市的日常。
         那些不起眼的街道、建築與角落，
         往往藏著值得留下的瞬間。
       </p>
@@ -143,31 +143,38 @@
     <span>AN URBAN PHOTOGRAPHY JOURNAL</span>
   </footer>
 
-<!-- 照片放大燈箱 -->
-<div id="lightbox" class="lightbox" hidden
-     role="dialog" aria-modal="true"
-     aria-label="攝影作品放大檢視">
+  <!-- 照片放大燈箱 -->
+  <div id="lightbox"
+       class="lightbox"
+       hidden
+       role="dialog"
+       aria-modal="true"
+       aria-label="攝影作品放大檢視">
 
-  <button id="lightbox-close"
-          class="lightbox-close"
-          aria-label="關閉照片">×</button>
+    <button id="lightbox-close"
+            class="lightbox-close"
+            aria-label="關閉照片">×</button>
 
-  <button id="lightbox-prev"
-          class="lightbox-prev"
-          aria-label="上一張照片">‹</button>
+    <button id="lightbox-prev"
+            class="lightbox-prev"
+            aria-label="上一張照片">‹</button>
 
-  <div class="lightbox-content">
-    <img id="lightbox-image" src="" alt="">
-    <div class="lightbox-info">
-      <span id="lightbox-caption"></span>
-      <span id="lightbox-counter"></span>
+    <div class="lightbox-content">
+
+      <img id="lightbox-image" src="" alt="">
+
+      <div class="lightbox-info">
+        <span id="lightbox-caption"></span>
+        <span id="lightbox-counter"></span>
+      </div>
+
     </div>
-  </div>
 
-  <button id="lightbox-next"
-          class="lightbox-next"
-          aria-label="下一張照片">›</button>
-</div>
+    <button id="lightbox-next"
+            class="lightbox-next"
+            aria-label="下一張照片">›</button>
+
+  </div>
 
   <script src="script.js"></script>
 
