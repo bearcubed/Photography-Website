@@ -444,3 +444,118 @@ footer {
     transition: none;
   }
 }
+
+/* ==================================
+   Photography Collections
+   攝影系列選單
+================================== */
+
+.collection-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 90px;
+}
+
+.collection-button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid #454545;
+  color: #999;
+
+  padding: 13px 19px;
+
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+  transition:
+    border-color 0.3s,
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.collection-button:hover {
+  color: #fff;
+  border-color: #aaa;
+}
+
+.collection-button.active {
+  background: #f2f0ea;
+  color: #111214;
+  border-color: #f2f0ea;
+}
+
+/* 系列標題 */
+.collection-heading {
+  margin-bottom: 45px;
+}
+
+.collection-heading h3 {
+  font-size: clamp(27px, 3.5vw, 45px);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.collection-heading p {
+  color: #999;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* 動態照片按鈕 */
+.photo-button {
+  appearance: none;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: zoom-in;
+}
+
+.photo-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photo-button:focus-visible,
+.collection-button:focus-visible {
+  outline: 2px solid #f2f0ea;
+  outline-offset: 5px;
+}
+
+/* 空系列提示 */
+.gallery-empty {
+  color: #999;
+  padding: 70px 0;
+  text-align: center;
+}
+
+/* 手機版 */
+@media (max-width: 700px) {
+  .collection-filters {
+    gap: 9px;
+    margin-bottom: 60px;
+  }
+
+  .collection-button {
+    padding: 11px 13px;
+    font-size: 10px;
+  }
+
+  .collection-heading {
+    margin-bottom: 35px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-button {
+    transition: none;
+  }
+}
