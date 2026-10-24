@@ -1,9 +1,10 @@
 
-/* ===================================
+/* ==========================================
    URBAN FRAGMENTS
-   Dark Minimal Cinematic Portfolio
-=================================== */
+   Dark Cinematic Photography Portfolio
+========================================== */
 
+/* 基本設定 */
 * {
   box-sizing: border-box;
 }
@@ -28,7 +29,9 @@ img {
   max-width: 100%;
 }
 
-/* 導覽列 */
+/* ==========================================
+   Navigation
+========================================== */
 
 .navbar {
   position: absolute;
@@ -36,7 +39,6 @@ img {
   left: 0;
   width: 100%;
   z-index: 10;
-
   padding: 36px 7%;
 
   display: flex;
@@ -69,7 +71,9 @@ nav a:hover {
   color: #fff;
 }
 
-/* 首頁封面 */
+/* ==========================================
+   Hero
+========================================== */
 
 .hero {
   min-height: 100vh;
@@ -87,7 +91,7 @@ nav a:hover {
       rgba(0, 0, 0, 0.38) 55%,
       rgba(0, 0, 0, 0.12) 100%
     ),
-    url("cover.jpg") center/cover no-repeat;
+    url("cover.jpg") center / cover no-repeat;
 }
 
 .hero-content {
@@ -125,6 +129,7 @@ nav a:hover {
   margin-top: 55px;
   padding-bottom: 12px;
 
+  color: #fff;
   text-decoration: none;
   font-size: 11px;
   letter-spacing: 3px;
@@ -134,17 +139,19 @@ nav a:hover {
 }
 
 .explore:hover {
-  border-color: white;
+  border-color: #fff;
 }
 
-/* Portfolio */
+/* ==========================================
+   Portfolio
+========================================== */
 
 .portfolio {
   padding: 130px 8% 160px;
 }
 
 .portfolio-heading {
-  margin-bottom: 90px;
+  margin-bottom: 65px;
 }
 
 .portfolio-heading h2 {
@@ -161,13 +168,81 @@ nav a:hover {
   line-height: 2;
 }
 
-/* 不對稱攝影誌 */
+/* ==========================================
+   Collection Filters
+========================================== */
+
+.collection-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 90px;
+}
+
+.collection-button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid #454545;
+  color: #999;
+
+  padding: 13px 19px;
+
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.3s,
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.collection-button:hover {
+  color: #fff;
+  border-color: #aaa;
+}
+
+.collection-button.active {
+  background: #f2f0ea;
+  color: #111214;
+  border-color: #f2f0ea;
+}
+
+.collection-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+}
+
+/* 目前攝影系列標題 */
+.collection-heading {
+  margin-bottom: 45px;
+}
+
+.collection-heading h3 {
+  font-size: clamp(27px, 3.5vw, 45px);
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+
+.collection-heading p {
+  color: #999;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   Asymmetric Editorial Gallery
+========================================== */
 
 .editorial-gallery {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
+
   column-gap: 20px;
   row-gap: 115px;
+
   align-items: start;
 }
 
@@ -176,11 +251,24 @@ nav a:hover {
   min-width: 0;
 }
 
+.photo-button {
+  appearance: none;
+  display: block;
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+
+  cursor: zoom-in;
+}
+
 .editorial-photo img {
   display: block;
   width: 100%;
   height: auto;
-  cursor: zoom-in;
 
   transition:
     opacity 0.5s ease,
@@ -192,6 +280,11 @@ nav a:hover {
   transform: scale(1.008);
 }
 
+.photo-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+}
+
 .editorial-photo figcaption {
   margin-top: 18px;
   color: #888;
@@ -200,6 +293,7 @@ nav a:hover {
   line-height: 1.8;
 }
 
+/* 不對稱排列 */
 .photo-featured {
   grid-column: 2 / 12;
 }
@@ -217,7 +311,15 @@ nav a:hover {
   grid-column: 4 / 13;
 }
 
-/* About */
+.gallery-empty {
+  color: #999;
+  padding: 70px 0;
+  text-align: center;
+}
+
+/* ==========================================
+   About
+========================================== */
 
 .about {
   padding: 120px 10% 160px;
@@ -236,7 +338,9 @@ nav a:hover {
   line-height: 2.5;
 }
 
-/* Footer */
+/* ==========================================
+   Footer
+========================================== */
 
 footer {
   border-top: 1px solid #292929;
@@ -251,9 +355,12 @@ footer {
   letter-spacing: 2px;
 }
 
-/* 照片燈箱 */
+/* ==========================================
+   Lightbox
+========================================== */
 
-.lightbox[hidden] {
+.lightbox[hidden],
+.gallery-empty[hidden] {
   display: none;
 }
 
@@ -267,6 +374,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 65px 75px;
 }
 
@@ -281,9 +389,11 @@ footer {
   max-width: 100%;
   max-height: 75vh;
   max-height: 75dvh;
+
   width: auto;
   height: auto;
   margin: auto;
+
   object-fit: contain;
 }
 
@@ -300,9 +410,10 @@ footer {
 
 .lightbox button {
   position: absolute;
-  border: none;
+  border: 0;
   background: transparent;
-  color: white;
+
+  color: #fff;
   cursor: pointer;
   font-size: 42px;
 }
@@ -325,11 +436,13 @@ footer {
 }
 
 .lightbox button:focus-visible {
-  outline: 2px solid white;
+  outline: 2px solid #fff;
   outline-offset: 5px;
 }
 
-/* 平板版 */
+/* ==========================================
+   Tablet
+========================================== */
 
 @media (max-width: 900px) {
   .editorial-gallery {
@@ -341,10 +454,11 @@ footer {
   }
 }
 
-/* 手機版 */
+/* ==========================================
+   Mobile
+========================================== */
 
 @media (max-width: 700px) {
-
   .navbar {
     flex-direction: column;
     gap: 24px;
@@ -376,6 +490,20 @@ footer {
 
   .portfolio-heading {
     margin-bottom: 55px;
+  }
+
+  .collection-filters {
+    gap: 9px;
+    margin-bottom: 60px;
+  }
+
+  .collection-button {
+    padding: 11px 13px;
+    font-size: 10px;
+  }
+
+  .collection-heading {
+    margin-bottom: 35px;
   }
 
   .editorial-gallery {
@@ -432,7 +560,6 @@ footer {
 }
 
 /* 減少動畫偏好 */
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -440,121 +567,7 @@ footer {
 
   .editorial-photo img,
   nav a,
-  .explore {
-    transition: none;
-  }
-}
-
-/* ==================================
-   Photography Collections
-   攝影系列選單
-================================== */
-
-.collection-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 90px;
-}
-
-.collection-button {
-  appearance: none;
-  background: transparent;
-  border: 1px solid #454545;
-  color: #999;
-
-  padding: 13px 19px;
-
-  font-family: inherit;
-  font-size: 11px;
-  letter-spacing: 1px;
-
-  cursor: pointer;
-  transition:
-    border-color 0.3s,
-    background-color 0.3s,
-    color 0.3s;
-}
-
-.collection-button:hover {
-  color: #fff;
-  border-color: #aaa;
-}
-
-.collection-button.active {
-  background: #f2f0ea;
-  color: #111214;
-  border-color: #f2f0ea;
-}
-
-/* 系列標題 */
-.collection-heading {
-  margin-bottom: 45px;
-}
-
-.collection-heading h3 {
-  font-size: clamp(27px, 3.5vw, 45px);
-  font-weight: 400;
-  margin: 0 0 12px;
-}
-
-.collection-heading p {
-  color: #999;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-/* 動態照片按鈕 */
-.photo-button {
-  appearance: none;
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-
-  border: 0;
-  background: transparent;
-  text-align: left;
-  cursor: zoom-in;
-}
-
-.photo-button img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.photo-button:focus-visible,
-.collection-button:focus-visible {
-  outline: 2px solid #f2f0ea;
-  outline-offset: 5px;
-}
-
-/* 空系列提示 */
-.gallery-empty {
-  color: #999;
-  padding: 70px 0;
-  text-align: center;
-}
-
-/* 手機版 */
-@media (max-width: 700px) {
-  .collection-filters {
-    gap: 9px;
-    margin-bottom: 60px;
-  }
-
-  .collection-button {
-    padding: 11px 13px;
-    font-size: 10px;
-  }
-
-  .collection-heading {
-    margin-bottom: 35px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
+  .explore,
   .collection-button {
     transition: none;
   }
