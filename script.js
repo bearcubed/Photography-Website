@@ -1,45 +1,67 @@
 
-/* =====================================
+/* ==================================
    URBAN FRAGMENTS
-   Photography Lightbox
-   照片放大與切換功能
-===================================== */
+   Auto Gallery + Lightbox
+================================== */
 
-// 取得所有攝影作品
+// 1. 自動產生相簿
+
+const gallery = document.getElementById("photo-gallery");
+
+const layoutClasses = [
+  "photo-featured",
+  "photo-left",
+  "photo-right",
+  "photo-wide"
+];
+
+photoData.forEach((item, index) => {
+  const figure = document.createElement("figure");
+
+  figure.className =
+    "editorial-photo " +
+    layoutClasses[index % layoutClasses.length];
+
+  const image = document.createElement("img");
+  image.src = item.src;
+  image.alt = item.description || item.title;
+  image.loading = "lazy";
+  image.tabIndex = 0;
+  image.setAttribute("role", "button");
+  image.setAttribute("aria-label", "放大" + image.alt);
+
+  const caption = document.createElement("figcaption");
+
+  const number = String(index + 1).padStart(2, "0");
+  caption.textContent = number + " / " + item.title;
+
+  figure.appendChild(image);
+  figure.appendChild(caption);
+  gallery.appendChild(figure);
+});
+
+// 2. 取得所有照片與燈箱元素
+
 const photos = Array.from(
   document.querySelectorAll(".editorial-photo")
 );
 
-// 取得燈箱相關元素
 const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+const lightboxCaption = document.getElementById("lightbox-caption");
+const lightboxCounter = document.getElementById("lightbox-counter");
 
-const lightboxImage =
-  document.getElementById("lightbox-image");
+const closeButton = document.getElementById("lightbox-close");
+const prevButton = document.getElementById("lightbox-prev");
+const nextButton = document.getElementById("lightbox-next");
 
-const lightboxCaption =
-  document.getElementById("lightbox-caption");
-
-const lightboxCounter =
-  document.getElementById("lightbox-counter");
-
-const closeButton =
-  document.getElementById("lightbox-close");
-
-const prevButton =
-  document.getElementById("lightbox-prev");
-
-const nextButton =
-  document.getElementById("lightbox-next");
-
-// 紀錄目前顯示第幾張照片
 let currentIndex = 0;
 let previousFocus = null;
 
-// 顯示指定照片
-function showPhoto(index) {
+// 3. 顯示照片
 
-  currentIndex =
-    (index + photos.length) % photos.length;
+function showPhoto(index) {
+  currentIndex = (index + photos.length) % photos.length;
 
   const photo = photos[currentIndex];
   const image = photo.querySelector("img");
@@ -47,91 +69,68 @@ function showPhoto(index) {
 
   lightboxImage.src = image.src;
   lightboxImage.alt = image.alt;
-
-  lightboxCaption.textContent =
-    caption.textContent.trim();
+  lightboxCaption.textContent = caption.textContent.trim();
 
   lightboxCounter.textContent =
-    `${String(currentIndex + 1).padStart(2, "0")} / ` +
-    `${String(photos.length).padStart(2, "0")}`;
+    String(currentIndex + 1).padStart(2, "0") +
+    " / " +
+    String(photos.length).padStart(2, "0");
 }
 
-// 開啟燈箱
-function openLightbox(index) {
+// 4. 開啟燈箱
 
+function openLightbox(index) {
   previousFocus = document.activeElement;
 
   showPhoto(index);
-
   lightbox.hidden = false;
 
   document.body.style.overflow = "hidden";
-
   closeButton.focus();
 }
 
-// 關閉燈箱
+// 5. 關閉燈箱
+
 function closeLightbox() {
-
   lightbox.hidden = true;
-
   lightboxImage.removeAttribute("src");
 
   document.body.style.overflow = "";
-
   previousFocus?.focus();
 }
 
-// 點擊照片時開啟燈箱
+// 6. 為照片加入互動功能
+
 photos.forEach((photo, index) => {
-
   const image = photo.querySelector("img");
-
-  image.tabIndex = 0;
-  image.setAttribute("role", "button");
-  image.setAttribute(
-    "aria-label",
-    `放大${image.alt}`
-  );
 
   image.addEventListener("click", () => {
     openLightbox(index);
   });
 
-  // 支援鍵盤操作
   image.addEventListener("keydown", (event) => {
-
-    if (
-      event.key === "Enter" ||
-      event.key === " "
-    ) {
+    if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       openLightbox(index);
     }
-
   });
-
 });
 
-// 關閉按鈕
-closeButton.addEventListener(
-  "click",
-  closeLightbox
-);
+// 7. 燈箱按鈕
 
-// 上一張照片
+closeButton.addEventListener("click", closeLightbox);
+
 prevButton.addEventListener("click", () => {
   showPhoto(currentIndex - 1);
 });
 
-// 下一張照片
 nextButton.addEventListener("click", () => {
   showPhoto(currentIndex + 1);
 });
 
-// 鍵盤控制
-document.addEventListener("keydown", (event) => {
+// 8. 鍵盤操作
 
+document.addEventListener("keydown", (event) => {
   if (lightbox.hidden) return;
 
   if (event.key === "Escape") {
@@ -146,7 +145,6 @@ document.addEventListener("keydown", (event) => {
     showPhoto(currentIndex + 1);
   }
 
-  // 將Tab焦點留在燈箱控制按鈕內
   if (event.key === "Tab") {
     const controls = [
       closeButton,
@@ -154,8 +152,7 @@ document.addEventListener("keydown", (event) => {
       nextButton
     ];
 
-    const index =
-      controls.indexOf(document.activeElement);
+    const index = controls.indexOf(document.activeElement);
 
     if (event.shiftKey && index <= 0) {
       event.preventDefault();
@@ -168,14 +165,12 @@ document.addEventListener("keydown", (event) => {
       controls[0].focus();
     }
   }
-
 });
 
-// 點擊燈箱背景時關閉
-lightbox.addEventListener("click", (event) => {
+// 9. 點擊燈箱背景關閉
 
+lightbox.addEventListener("click", (event) => {
   if (event.target === lightbox) {
     closeLightbox();
   }
-
 });
