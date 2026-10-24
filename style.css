@@ -4,7 +4,6 @@
    Dark Minimal Cinematic Portfolio
 =================================== */
 
-/* 基礎設定 */
 * {
   box-sizing: border-box;
 }
@@ -29,9 +28,7 @@ img {
   max-width: 100%;
 }
 
-/* ===================================
-   導覽列
-=================================== */
+/* 導覽列 */
 
 .navbar {
   position: absolute;
@@ -50,7 +47,6 @@ img {
 .logo {
   color: #fff;
   text-decoration: none;
-
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 3px;
@@ -73,9 +69,7 @@ nav a:hover {
   color: #fff;
 }
 
-/* ===================================
-   首頁封面
-=================================== */
+/* 首頁封面 */
 
 .hero {
   min-height: 100vh;
@@ -93,7 +87,7 @@ nav a:hover {
       rgba(0, 0, 0, 0.38) 55%,
       rgba(0, 0, 0, 0.12) 100%
     ),
-    url("images/cover.jpg") center/cover no-repeat;
+    url("cover.jpg") center/cover no-repeat;
 }
 
 .hero-content {
@@ -116,7 +110,6 @@ nav a:hover {
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -3px;
-
   margin: 30px 0;
 }
 
@@ -129,7 +122,6 @@ nav a:hover {
 
 .explore {
   display: inline-block;
-
   margin-top: 55px;
   padding-bottom: 12px;
 
@@ -145,9 +137,7 @@ nav a:hover {
   border-color: white;
 }
 
-/* ===================================
-   Portfolio 整體區域
-=================================== */
+/* Portfolio */
 
 .portfolio {
   padding: 130px 8% 160px;
@@ -162,7 +152,6 @@ nav a:hover {
   font-weight: 400;
   letter-spacing: -1.5px;
   line-height: 1.2;
-
   margin: 20px 0 25px;
 }
 
@@ -172,19 +161,13 @@ nav a:hover {
   line-height: 2;
 }
 
-/* ===================================
-   不對稱攝影誌相簿
-=================================== */
+/* 不對稱攝影誌 */
 
 .editorial-gallery {
   display: grid;
-
-  grid-template-columns:
-    repeat(12, minmax(0, 1fr));
-
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: 20px;
   row-gap: 115px;
-
   align-items: start;
 }
 
@@ -197,6 +180,7 @@ nav a:hover {
   display: block;
   width: 100%;
   height: auto;
+  cursor: zoom-in;
 
   transition:
     opacity 0.5s ease,
@@ -216,30 +200,24 @@ nav a:hover {
   line-height: 1.8;
 }
 
-/* 第一張：大幅置中 */
 .photo-featured {
   grid-column: 2 / 12;
 }
 
-/* 第二張：偏左 */
 .photo-left {
   grid-column: 1 / 8;
 }
 
-/* 第三張：偏右、小尺寸 */
 .photo-right {
   grid-column: 9 / 13;
   margin-top: 140px;
 }
 
-/* 第四張：大幅偏右 */
 .photo-wide {
   grid-column: 4 / 13;
 }
 
-/* ===================================
-   About
-=================================== */
+/* About */
 
 .about {
   padding: 120px 10% 160px;
@@ -258,9 +236,7 @@ nav a:hover {
   line-height: 2.5;
 }
 
-/* ===================================
-   頁尾
-=================================== */
+/* Footer */
 
 footer {
   border-top: 1px solid #292929;
@@ -275,108 +251,8 @@ footer {
   letter-spacing: 2px;
 }
 
-/* ===================================
-   平板
-=================================== */
-
-@media (max-width: 900px) {
-  .editorial-gallery {
-    row-gap: 80px;
-  }
-
-  .photo-right {
-    margin-top: 80px;
-  }
-}
-
-/* ===================================
-   手機版
-=================================== */
-
-@media (max-width: 700px) {
-
-  .navbar {
-    flex-direction: column;
-    gap: 24px;
-    padding: 26px 5%;
-  }
-
-  nav {
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero {
-    padding: 170px 7% 80px;
-  }
-
-  .hero h1 {
-    font-size: clamp(42px, 11vw, 70px);
-    letter-spacing: -1px;
-  }
-
-  .hero-description {
-    font-size: 13px;
-  }
-
-  .portfolio {
-    padding: 90px 6%;
-  }
-
-  .portfolio-heading {
-    margin-bottom: 55px;
-  }
-
-  .editorial-gallery {
-    grid-template-columns:
-      repeat(6, minmax(0, 1fr));
-
-    column-gap: 12px;
-    row-gap: 60px;
-  }
-
-  .photo-featured {
-    grid-column: 1 / 7;
-  }
-
-  .photo-left {
-    grid-column: 1 / 6;
-  }
-
-  .photo-right {
-    grid-column: 3 / 7;
-    margin-top: 0;
-  }
-
-  .photo-wide {
-    grid-column: 1 / 7;
-  }
-
-  .about {
-    padding: 90px 7%;
-  }
-
-  footer {
-    flex-direction: column;
-    line-height: 2;
-  }
-}
-
-/* 無障礙：減少動畫 */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .editorial-photo img,
-  nav a,
-  .explore {
-    transition: none;
-  }
-}
-
 /* 照片燈箱 */
+
 .lightbox[hidden] {
   display: none;
 }
@@ -385,7 +261,9 @@ footer {
   position: fixed;
   inset: 0;
   z-index: 1000;
+
   background: rgba(8, 8, 10, 0.98);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -413,6 +291,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+
   color: #aaa;
   font-size: 11px;
   letter-spacing: 2px;
@@ -450,11 +329,87 @@ footer {
   outline-offset: 5px;
 }
 
-.editorial-photo img {
-  cursor: zoom-in;
+/* 平板版 */
+
+@media (max-width: 900px) {
+  .editorial-gallery {
+    row-gap: 80px;
+  }
+
+  .photo-right {
+    margin-top: 80px;
+  }
 }
 
+/* 手機版 */
+
 @media (max-width: 700px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 24px;
+    padding: 26px 5%;
+  }
+
+  nav {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 170px 7% 80px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 11vw, 70px);
+    letter-spacing: -1px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .portfolio {
+    padding: 90px 6%;
+  }
+
+  .portfolio-heading {
+    margin-bottom: 55px;
+  }
+
+  .editorial-gallery {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 60px;
+  }
+
+  .photo-featured {
+    grid-column: 1 / 7;
+  }
+
+  .photo-left {
+    grid-column: 1 / 6;
+  }
+
+  .photo-right {
+    grid-column: 3 / 7;
+    margin-top: 0;
+  }
+
+  .photo-wide {
+    grid-column: 1 / 7;
+  }
+
+  .about {
+    padding: 90px 7%;
+  }
+
+  footer {
+    flex-direction: column;
+    line-height: 2;
+  }
+
   .lightbox {
     padding: 70px 45px;
   }
@@ -473,5 +428,19 @@ footer {
 
   .lightbox-info {
     font-size: 9px;
+  }
+}
+
+/* 減少動畫偏好 */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .editorial-photo img,
+  nav a,
+  .explore {
+    transition: none;
   }
 }
