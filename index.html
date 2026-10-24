@@ -8,6 +8,7 @@
         content="width=device-width, initial-scale=1.0">
 
   <title>Urban Fragments | Photography</title>
+
   <meta name="description"
         content="那些藏在城市裡，被忽略的日常風景。">
 
@@ -16,8 +17,12 @@
 
 <body>
 
-  <!-- 網站導覽列 -->
+  <!-- ==================================
+       網站導覽列
+  ================================== -->
+
   <header class="navbar">
+
     <a href="#home" class="logo">
       URBAN FRAGMENTS
     </a>
@@ -27,14 +32,20 @@
       <a href="#portfolio">PORTFOLIO</a>
       <a href="#about">ABOUT</a>
     </nav>
+
   </header>
+
 
   <main>
 
-    <!-- 首頁封面 -->
+    <!-- ==================================
+         首頁封面
+    ================================== -->
+
     <section id="home" class="hero">
 
       <div class="hero-content">
+
         <p class="eyebrow">
           AN URBAN PHOTO JOURNAL
         </p>
@@ -49,81 +60,68 @@
         </p>
 
         <a href="#portfolio" class="explore">
-          EXPLORE WORK <span aria-hidden="true">↓</span>
+          EXPLORE WORK
+          <span aria-hidden="true">↓</span>
         </a>
+
       </div>
 
     </section>
 
-    <!-- 攝影作品展示區 -->
+
+    <!-- ==================================
+         攝影作品展示區
+         照片由JavaScript自動產生
+    ================================== -->
+
     <section id="portfolio" class="portfolio">
 
       <div class="portfolio-heading">
+
         <p class="eyebrow">
           SELECTED PHOTOGRAPHS — 2026
         </p>
 
-        <h2>Fragments of the City</h2>
+        <h2>
+          Fragments of the City
+        </h2>
 
         <p>
           在尋常的城市角落，尋找不尋常的瞬間。
         </p>
+
       </div>
 
-      <div class="editorial-gallery">
 
-        <!-- 第一張 -->
-        <figure class="editorial-photo photo-featured">
-          <img src="photo1.jpg"
-               alt="城市角落攝影作品1"
-               loading="lazy">
+      <!-- 自動攝影相簿 -->
 
-          <figcaption>
-            01 / CITY FRAGMENTS
-          </figcaption>
-        </figure>
+      <div class="editorial-gallery"
+           id="photo-gallery">
 
-        <!-- 第二張 -->
-        <figure class="editorial-photo photo-left">
-          <img src="photo2.jpg"
-               alt="城市角落攝影作品2"
-               loading="lazy">
+        <!--
+          這裡不需要手動加入照片。
 
-          <figcaption>
-            02 / STREET STORIES
-          </figcaption>
-        </figure>
+          photos.js：
+          儲存照片資料。
 
-        <!-- 第三張 -->
-        <figure class="editorial-photo photo-right">
-          <img src="photo3.jpg"
-               alt="城市角落攝影作品3"
-               loading="lazy">
-
-          <figcaption>
-            03 / QUIET MOMENTS
-          </figcaption>
-        </figure>
-
-        <!-- 第四張 -->
-        <figure class="editorial-photo photo-wide">
-          <img src="photo4.jpg"
-               alt="城市角落攝影作品4"
-               loading="lazy">
-
-          <figcaption>
-            04 / AFTER DARK
-          </figcaption>
-        </figure>
+          script.js：
+          自動產生照片並加入展示區。
+        -->
 
       </div>
 
     </section>
 
-    <!-- 關於我 -->
+
+    <!-- ==================================
+         關於我
+    ================================== -->
+
     <section id="about" class="about">
 
-      <p class="eyebrow">BEHIND THE LENS</p>
+      <p class="eyebrow">
+        BEHIND THE LENS
+      </p>
 
       <h2>About Me</h2>
 
@@ -137,13 +135,28 @@
 
   </main>
 
-  <!-- 頁尾 -->
+
+  <!-- ==================================
+       頁尾
+  ================================== -->
+
   <footer>
-    <span>© 2026 URBAN FRAGMENTS</span>
-    <span>AN URBAN PHOTOGRAPHY JOURNAL</span>
+
+    <span>
+      © 2026 URBAN FRAGMENTS
+    </span>
+
+    <span>
+      AN URBAN PHOTOGRAPHY JOURNAL
+    </span>
+
   </footer>
 
-  <!-- 照片放大燈箱 -->
+
+  <!-- ==================================
+       照片放大燈箱 Lightbox
+  ================================== -->
+
   <div id="lightbox"
        class="lightbox"
        hidden
@@ -151,31 +164,63 @@
        aria-modal="true"
        aria-label="攝影作品放大檢視">
 
+    <!-- 關閉按鈕 -->
     <button id="lightbox-close"
             class="lightbox-close"
-            aria-label="關閉照片">×</button>
+            type="button"
+            aria-label="關閉照片">
+      ×
+    </button>
 
+
+    <!-- 上一張 -->
     <button id="lightbox-prev"
             class="lightbox-prev"
-            aria-label="上一張照片">‹</button>
+            type="button"
+            aria-label="上一張照片">
+      ‹
+    </button>
 
+
+    <!-- 照片展示 -->
     <div class="lightbox-content">
 
-      <img id="lightbox-image" src="" alt="">
+      <img id="lightbox-image"
+           alt="放大的攝影作品">
 
+
+      <!-- 照片資訊 -->
       <div class="lightbox-info">
+
         <span id="lightbox-caption"></span>
+
         <span id="lightbox-counter"></span>
+
       </div>
 
     </div>
 
+
+    <!-- 下一張 -->
     <button id="lightbox-next"
             class="lightbox-next"
-            aria-label="下一張照片">›</button>
+            type="button"
+            aria-label="下一張照片">
+      ›
+    </button>
 
   </div>
 
+
+  <!-- ==================================
+       JavaScript
+       載入順序非常重要
+  ================================== -->
+
+  <!-- 先載入照片資料 -->
+  <script src="photos.js"></script>
+
+  <!-- 再載入自動相簿和燈箱功能 -->
   <script src="script.js"></script>
 
 </body>
