@@ -1,10 +1,13 @@
 
-/* ==================================
+/* ==========================================
    URBAN FRAGMENTS
-   Collections + Gallery + Lightbox
-================================== */
+   Collections + Optimized Gallery + Lightbox
+========================================== */
 
-// 網站元素
+// ==========================================
+// 1. 取得網頁元素
+// ==========================================
+
 const gallery =
   document.getElementById("photo-gallery");
 
@@ -20,130 +23,7 @@ const collectionDescription =
 const emptyMessage =
   document.getElementById("gallery-empty");
 
-// 照片排列樣式
-const layoutClasses = [
-  "photo-featured",
-  "photo-left",
-  "photo-right",
-  "photo-wide"
-];
-
-// 目前顯示的作品
-let visiblePhotos = [];
-let activeCollection = "all";
-
-// ==================================
-// 1. 產生攝影系列按鈕
-// ==================================
-
-function renderFilters() {
-  filters.replaceChildren();
-
-  const options = [
-    {
-      id: "all",
-      title: "All Works"
-    },
-    ...collections
-  ];
-
-  options.forEach((item) => {
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "collection-button";
-    button.textContent = item.title;
-
-    const isActive =
-      item.id === activeCollection;
-
-    button.classList.toggle("active", isActive);
-    button.setAttribute(
-      "aria-pressed",
-      String(isActive)
-    );
-
-    button.addEventListener("click", () => {
-      activeCollection = item.id;
-      renderFilters();
-      renderGallery();
-    });
-
-    filters.appendChild(button);
-  });
-}
-
-// ==================================
-// 2. 自動產生攝影作品
-// ==================================
-
-function renderGallery() {
-  gallery.replaceChildren();
-
-  visiblePhotos =
-    activeCollection === "all"
-      ? [...photoData]
-      : photoData.filter(
-          item => item.collection === activeCollection
-        );
-
-  const currentCollection = collections.find(
-    item => item.id === activeCollection
-  );
-
-  collectionTitle.textContent =
-    currentCollection?.title || "All Works";
-
-  collectionDescription.textContent =
-    currentCollection?.description || "所有攝影作品";
-
-  emptyMessage.hidden = visiblePhotos.length !== 0;
-
-  visiblePhotos.forEach((item, index) => {
-    const figure = document.createElement("figure");
-
-    figure.className =
-      "editorial-photo " +
-      layoutClasses[index % layoutClasses.length];
-
-    const image = document.createElement("img");
-
-    image.src = item.src;
-    image.alt = item.description || item.title;
-    image.loading = "lazy";
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "photo-button";
-    button.setAttribute(
-      "aria-label",
-      "放大" + image.alt
-    );
-
-    button.appendChild(image);
-
-    const caption = document.createElement("figcaption");
-
-    const number =
-      String(index + 1).padStart(2, "0");
-
-    caption.textContent =
-      number + " / " + item.title;
-
-    button.addEventListener("click", () => {
-      openLightbox(index);
-    });
-
-    figure.appendChild(button);
-    figure.appendChild(caption);
-    gallery.appendChild(figure);
-  });
-}
-
-// ==================================
-// 3. Lightbox
-// ==================================
-
+// Lightbox元素
 const lightbox =
   document.getElementById("lightbox");
 
@@ -165,11 +45,166 @@ const prevButton =
 const nextButton =
   document.getElementById("lightbox-next");
 
+// 不對稱攝影誌版型
+const layoutClasses = [
+  "photo-featured",
+  "photo-left",
+  "photo-right",
+  "photo-wide"
+];
+
+// 目前的狀態
+let activeCollection = "all";
+let visiblePhotos = [];
 let currentIndex = 0;
 let previousFocus = null;
 
-// 顯示指定照片
+
+// ==========================================
+// 2. 建立攝影系列選單
+// ==========================================
+
+function renderFilters() {
+
+  filters.replaceChildren();
+
+  const options = [
+    {
+      id: "all",
+      title: "All Works"
+    },
+    ...collections
+  ];
+
+  options.forEach((item) => {
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "collection-button";
+    button.textContent = item.title;
+
+    const isActive =
+      item.id === activeCollection;
+
+    button.classList.toggle("active", isActive);
+
+    button.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+
+    button.addEventListener("click", () => {
+
+      activeCollection = item.id;
+
+      renderFilters();
+      renderGallery();
+    });
+
+    filters.appendChild(button);
+  });
+}
+
+
+// ==========================================
+// 3. 自動產生攝影相簿
+// ==========================================
+
+function renderGallery() {
+
+  gallery.replaceChildren();
+
+  // 根據選擇的系列篩選照片
+  visiblePhotos =
+    activeCollection === "all"
+      ? [...photoData]
+      : photoData.filter(
+          item => item.collection === activeCollection
+        );
+
+  const currentCollection = collections.find(
+    item => item.id === activeCollection
+  );
+
+  // 更新系列標題
+  collectionTitle.textContent =
+    currentCollection?.title || "All Works";
+
+  collectionDescription.textContent =
+    currentCollection?.description || "所有攝影作品";
+
+  // 沒有作品時顯示提示
+  emptyMessage.hidden =
+    visiblePhotos.length !== 0;
+
+  visiblePhotos.forEach((item, index) => {
+
+    // 建立figure
+    const figure =
+      document.createElement("figure");
+
+    figure.className =
+      "editorial-photo " +
+      layoutClasses[index % layoutClasses.length];
+
+    // 建立照片按鈕
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+    button.className = "photo-button";
+
+    button.setAttribute(
+      "aria-label",
+      "放大" + (item.description || item.title)
+    );
+
+    // 建立縮圖
+    const image =
+      document.createElement("img");
+
+    image.src = item.thumbnail;
+    image.alt =
+      item.description || item.title;
+
+    // 延遲載入畫面外的照片
+    image.loading = "lazy";
+
+    // 瀏覽器可解碼時非同步解碼
+    image.decoding = "async";
+
+    button.appendChild(image);
+
+    // 建立照片說明
+    const caption =
+      document.createElement("figcaption");
+
+    const number =
+      String(index + 1).padStart(2, "0");
+
+    caption.textContent =
+      number + " / " + item.title;
+
+    // 點擊後開啟高畫質照片
+    button.addEventListener("click", () => {
+      openLightbox(index);
+    });
+
+    figure.appendChild(button);
+    figure.appendChild(caption);
+
+    gallery.appendChild(figure);
+  });
+}
+
+
+// ==========================================
+// 4. 顯示高畫質照片
+// ==========================================
+
 function showPhoto(index) {
+
   if (visiblePhotos.length === 0) return;
 
   currentIndex =
@@ -178,11 +213,17 @@ function showPhoto(index) {
 
   const item = visiblePhotos[currentIndex];
 
-  lightboxImage.src = item.src;
+  // 優先清除上一張，避免下載期間顯示舊圖
+  lightboxImage.removeAttribute("src");
+
+  // Lightbox使用高畫質版本
+  lightboxImage.src = item.full;
+
   lightboxImage.alt =
     item.description || item.title;
 
-  lightboxCaption.textContent = item.title;
+  lightboxCaption.textContent =
+    item.title;
 
   lightboxCounter.textContent =
     String(currentIndex + 1).padStart(2, "0") +
@@ -190,32 +231,51 @@ function showPhoto(index) {
     String(visiblePhotos.length).padStart(2, "0");
 }
 
-// 開啟燈箱
+
+// ==========================================
+// 5. 開啟Lightbox
+// ==========================================
+
 function openLightbox(index) {
+
   previousFocus = document.activeElement;
 
   showPhoto(index);
 
   lightbox.hidden = false;
+
+  // 防止背景捲動
   document.body.style.overflow = "hidden";
 
   closeButton.focus();
 }
 
-// 關閉燈箱
+
+// ==========================================
+// 6. 關閉Lightbox
+// ==========================================
+
 function closeLightbox() {
+
   lightbox.hidden = true;
+
   lightboxImage.removeAttribute("src");
 
   document.body.style.overflow = "";
+
+  // 返回先前操作的元素
   previousFocus?.focus();
 }
 
-// ==================================
-// 4. 燈箱按鈕
-// ==================================
 
-closeButton.addEventListener("click", closeLightbox);
+// ==========================================
+// 7. Lightbox按鈕
+// ==========================================
+
+closeButton.addEventListener(
+  "click",
+  closeLightbox
+);
 
 prevButton.addEventListener("click", () => {
   showPhoto(currentIndex - 1);
@@ -225,18 +285,25 @@ nextButton.addEventListener("click", () => {
   showPhoto(currentIndex + 1);
 });
 
-// 點擊背景關閉
+
+// ==========================================
+// 8. 點擊背景關閉
+// ==========================================
+
 lightbox.addEventListener("click", (event) => {
+
   if (event.target === lightbox) {
     closeLightbox();
   }
 });
 
-// ==================================
-// 5. 鍵盤操作
-// ==================================
+
+// ==========================================
+// 9. 鍵盤操作
+// ==========================================
 
 document.addEventListener("keydown", (event) => {
+
   if (lightbox.hidden) return;
 
   if (event.key === "Escape") {
@@ -252,32 +319,40 @@ document.addEventListener("keydown", (event) => {
     showPhoto(currentIndex + 1);
   }
 
+  // 將Tab焦點限制在燈箱按鈕
   if (event.key === "Tab") {
+
     const controls = [
       closeButton,
       prevButton,
       nextButton
     ];
 
-    const current =
+    const index =
       controls.indexOf(document.activeElement);
 
-    if (event.shiftKey && current <= 0) {
+    if (event.shiftKey && index <= 0) {
+
       event.preventDefault();
+
       controls[controls.length - 1].focus();
+
     } else if (
       !event.shiftKey &&
-      current === controls.length - 1
+      index === controls.length - 1
     ) {
+
       event.preventDefault();
+
       controls[0].focus();
     }
   }
 });
 
-// ==================================
-// 6. 初始化網站
-// ==================================
+
+// ==========================================
+// 10. 初始化網站
+// ==========================================
 
 renderFilters();
 renderGallery();
