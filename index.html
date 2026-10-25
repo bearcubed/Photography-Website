@@ -1,8 +1,10 @@
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
@@ -18,21 +20,24 @@
 
   <!-- 導覽列 -->
   <header class="navbar">
+
     <a href="#home" class="logo">
       URBAN FRAGMENTS
     </a>
 
     <nav aria-label="主要導覽">
       <a href="#home">HOME</a>
-      <a href="#portfolio">COLLECTIONS</a>
+      <a href="#portfolio">PORTFOLIO</a>
       <a href="#about">ABOUT</a>
     </nav>
+
   </header>
 
   <main>
 
     <!-- 首頁封面 -->
     <section id="home" class="hero">
+
       <div class="hero-content">
 
         <p class="eyebrow">
@@ -53,51 +58,40 @@
         </a>
 
       </div>
+
     </section>
 
-    <!-- 攝影系列 -->
+    <!-- 攝影作品集 -->
     <section id="portfolio" class="portfolio">
 
       <div class="portfolio-heading">
+
         <p class="eyebrow">
-          URBAN FRAGMENTS — SELECTED WORKS
+          URBAN FRAGMENTS — SELECTED PHOTOGRAPHS
         </p>
 
-        <h2>Collections</h2>
+        <h2>Fragments of the City.</h2>
 
         <p>
           在尋常的城市角落，
           尋找不尋常的瞬間。
         </p>
+
       </div>
 
-      <!-- 分類按鈕由JavaScript產生 -->
-      <div id="collection-filters"
-           class="collection-filters"
-           role="group"
-           aria-label="攝影作品系列">
+      <!-- 不規則攝影相簿 -->
+      <!-- JavaScript自動加入照片 -->
+      <div
+        id="photo-gallery"
+        class="editorial-gallery">
       </div>
 
-      <!-- 目前選取的系列 -->
-      <div class="collection-heading">
-        <h3 id="collection-title">
-          All Works
-        </h3>
-
-        <p id="collection-description">
-          所有攝影作品
-        </p>
-      </div>
-
-      <!-- 照片由JavaScript自動產生 -->
-      <div id="photo-gallery"
-           class="editorial-gallery">
-      </div>
-
-      <p id="gallery-empty"
-         class="gallery-empty"
-         hidden>
-        這個系列目前還沒有攝影作品。
+      <!-- 沒有照片時顯示 -->
+      <p
+        id="gallery-empty"
+        class="gallery-empty"
+        hidden>
+        目前還沒有攝影作品。
       </p>
 
     </section>
@@ -127,44 +121,51 @@
     <span>AN URBAN PHOTOGRAPHY JOURNAL</span>
   </footer>
 
-  <!-- 照片放大燈箱 -->
-  <div id="lightbox"
-       class="lightbox"
-       hidden
-       role="dialog"
-       aria-modal="true"
-       aria-label="攝影作品放大檢視">
+  <!-- 高畫質Lightbox -->
+  <div
+    id="lightbox"
+    class="lightbox"
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-label="攝影作品放大檢視">
 
-    <button id="lightbox-close"
-            class="lightbox-close"
-            type="button"
-            aria-label="關閉照片">
+    <button
+      id="lightbox-close"
+      class="lightbox-close"
+      type="button"
+      aria-label="關閉照片">
       ×
     </button>
 
-    <button id="lightbox-prev"
-            class="lightbox-prev"
-            type="button"
-            aria-label="上一張照片">
+    <button
+      id="lightbox-prev"
+      class="lightbox-prev"
+      type="button"
+      aria-label="上一張照片">
       ‹
     </button>
 
     <div class="lightbox-content">
 
-      <img id="lightbox-image"
-           alt="放大的攝影作品">
+      <img
+        id="lightbox-image"
+        alt="放大的攝影作品">
 
       <div class="lightbox-info">
+
         <span id="lightbox-caption"></span>
         <span id="lightbox-counter"></span>
+
       </div>
 
     </div>
 
-    <button id="lightbox-next"
-            class="lightbox-next"
-            type="button"
-            aria-label="下一張照片">
+    <button
+      id="lightbox-next"
+      class="lightbox-next"
+      type="button"
+      aria-label="下一張照片">
       ›
     </button>
 
@@ -173,7 +174,7 @@
   <!-- 先載入照片資料 -->
   <script src="photos.js"></script>
 
-  <!-- 再載入相簿及互動功能 -->
+  <!-- 再執行相簿程式 -->
   <script src="script.js"></script>
 
 </body>
